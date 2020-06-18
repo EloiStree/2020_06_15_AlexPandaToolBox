@@ -5,15 +5,15 @@ public class RaycastEven : MonoBehaviour
 {
     public float detectionRange = 3;
 
-    private float m_PreviousDistance;
 
     public LayerMask layer;
 
-    public RaycastHit raycastHit;
-
     public DistanceChangeEvent m_onDidistanceChange;
 
-    public float ratioTest;
+    private float m_previousDistance;
+    public RaycastHit raycastHit;
+
+    private float ratio;
 
 
     private void Update()
@@ -24,19 +24,19 @@ public class RaycastEven : MonoBehaviour
     private void OnRaycasting()
     {
         bool hasHit = Physics.Raycast(transform.position, transform.forward, out raycastHit, detectionRange, layer);
-        if (hasHit && raycastHit.distance <= detectionRange && raycastHit.distance != m_PreviousDistance)
+        if (hasHit && raycastHit.distance <= detectionRange && raycastHit.distance != m_previousDistance)
         {
-            ratioTest = (1f - raycastHit.distance / detectionRange);
-            m_onDidistanceChange.Invoke(ratioTest);
-            m_PreviousDistance = raycastHit.distance;
+            ratio = (1f - raycastHit.distance / detectionRange);
+            m_onDidistanceChange.Invoke(ratio);
+            m_previousDistance = raycastHit.distance;
 
-            Debug.LogWarning("Mon ratio est de  " + ratioTest);
+            Debug.LogWarning("Mon ratio est de  " + ratio);
         }
     }
 
     private void OnDrawGizmos()
     {
-        Vector3 targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + detectionRange);
+        Vector3 targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + raycastHit.distance);
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, targetPos);

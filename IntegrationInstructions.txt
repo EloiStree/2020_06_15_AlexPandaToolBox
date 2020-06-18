@@ -1,0 +1,24 @@
+Bonjour Matteo,
+
+Pour faire fonctionner mon package, voici la recette.
+Il te faut :
+-1- Un empty juste devant la tête. (Nommé "Raycast" dans ma scène de démo) 
+-2- Un plane ou un cube plat placé devant la caméra (Nommé " Mask " dans ma scène de démo).
+Ce plane ou cube plat devra recevoir le material " TransparantMat " afin de le rendre transparant.
+-3- Un nouveau Layer (que tu peux appeller comme tu veux) qui se place sur les murs ou et autres objets pouvant boucher la vue
+
+Placement des scripts et leur fonctionnement
+ - " RaycastEvent " se place sur l'empty évoqué dans le point 1.
+Tu peux définir la portée du Raycast et le Layer cible dans l'inspector.
+
+- " DarkView " se place sur le plane évoqué dans le point 2.
+Il n'y a rien de plus à faire avec ce script.
+Par contre, tu dois appeller sa fonction " ChangeAlpha " via l'event présent dans " Raycast Event " 
+(Attention de bien prendre la fonction "ChangeAlpha" dynamique en haut de la liste)
+
+Et normalement, maintenant, à chaque fois que ton raycast détectera le layer correspondant, il calculera la distance et en fonction de celle-ci, 
+le plane s'obscuricira de plus en plus. 
+
+Je pense n'avoir rien oublié. Je vais également te mettre des tooltips et des commentaires dans le code pour t'aider un maximum.
+
+Si tu as des questions concernant mon package, je reste à ta disposition.
