@@ -3,10 +3,13 @@ using UnityEngine.Events;
 
 public class RaycastEven : MonoBehaviour
 {
+    [Tooltip("Length max of the raycast")]
     public float detectionRange = 3;
 
-
+    [Tooltip("The layer who trigger the event")]
     public LayerMask layer;
+
+    public bool debugRation;
 
     public DistanceChangeEvent m_onDidistanceChange;
 
@@ -21,7 +24,7 @@ public class RaycastEven : MonoBehaviour
         OnRaycasting();
     }
 
-    private void OnRaycasting()
+    private void OnRaycasting()     //if the raycast touches the appropriate layer, it launches the event
     {
         bool hasHit = Physics.Raycast(transform.position, transform.forward, out raycastHit, detectionRange, layer);
         if (hasHit && raycastHit.distance <= detectionRange && raycastHit.distance != m_previousDistance)
@@ -30,13 +33,14 @@ public class RaycastEven : MonoBehaviour
             m_onDidistanceChange.Invoke(ratio);
             m_previousDistance = raycastHit.distance;
 
+            if(debugRation)
             Debug.LogWarning("Mon ratio est de  " + ratio);
         }
     }
 
     private void OnDrawGizmos()
     {
-        Vector3 targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + raycastHit.distance);
+        Vector3 targetPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + detectionRange);
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, targetPos);
