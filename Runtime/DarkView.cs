@@ -1,21 +1,32 @@
 ﻿
 using System.Runtime.CompilerServices;
+using UnityEditor.Graphs;
 using UnityEngine;
 
 public class DarkView : MonoBehaviour
 {
 
-    Color baseColor = Color.clear;
+    [SerializeField] Material m_rendererToAffect;
+    [SerializeField] Color choosedColor = Color.clear;
 
-    public bool debugRation;
-
-    public void ChangeAlpha(float ratio)
+    public float m_lerpPower;
+    [SerializeField] Color baseColor = Color.clear;
+     Color wantedColor = Color.clear;
+    public void Update()
     {
-        gameObject.GetComponent<Renderer>().material.color = baseColor;
-        baseColor.a = ratio;
-
-        if(debugRation)
-       Debug.Log("My alpha = " + ratio);
-
+        if (baseColor != wantedColor) { 
+            baseColor = Color.Lerp(baseColor, wantedColor, Time.deltaTime * m_lerpPower);
+            m_rendererToAffect.color = baseColor;
+        }
     }
+
+    public void ChangeAlpha(float newAlphaInPourcent)
+    {
+        if (newAlphaInPourcent != wantedColor.a) {
+            wantedColor = choosedColor;
+            wantedColor.a = newAlphaInPourcent;
+
+        }
+    }
+    
 }
