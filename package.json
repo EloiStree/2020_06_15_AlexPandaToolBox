@@ -1,9 +1,9 @@
 {
-  "name": "be.alexpanda.toolbox",
-  "displayName": "Panda Tool Box",
+  "name": "be.eloistree.fadecameraviewoncollision",
+  "displayName": "Fade Camera View On Collision",
   "version": "0.0.1",
   "unity": "2018.1",
-  "description": "You package description",
+  "description": "Allow to fade the camera view to a color based on collision with the environment",
   "keywords": ["Script","Tool"],
   "category": "Script",
   "dependencies":{}
