@@ -1,6 +1,4 @@
 ﻿
-using System.Runtime.CompilerServices;
-using UnityEditor.Graphs;
 using UnityEngine;
 
 public class DarkView : MonoBehaviour
