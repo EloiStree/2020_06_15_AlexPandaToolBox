@@ -6,5 +6,5 @@
   "description": "Allow to fade the camera view to a color based on collision with the environment",
   "keywords": ["Script","Tool"],
   "category": "Script",
-  "dependencies":{}
+  "dependencies":{ "be.eloistree.license":"0.0.1"}
 }
